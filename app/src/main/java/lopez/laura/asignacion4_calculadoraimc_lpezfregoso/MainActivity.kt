@@ -25,19 +25,26 @@ class MainActivity : AppCompatActivity(){
 
         //Evento button
         button.setOnClickListener { view ->
-            val a = calcularIMC(weight.text.toString().toDouble(), height.text.toString().toDouble())
-            val categoria = calcularCategoria(a)
-            imc.setText(a.toString())
-            range.setText(categoria)
+            if(!weight.text.toString().isEmpty() && !height.text.toString().isEmpty()){
+                val a = calcularIMC(weight.text.toString().toDouble(), height.text.toString().toDouble())
+                val categoria = calcularCategoria(a)
+                imc.setText(a.toString())
+                range.setText(categoria)
 
-            when(categoria) {
-                "Bajo peso" -> range.setBackgroundColor(R.color.colorBrown)
-                "Normal" -> range.setBackgroundColor(R.color.colorGreen)
-                "Sobrepeso" -> range.setBackgroundColor(R.color.colorGreenish)
-                "Obesidad grado 1" -> range.setBackgroundColor(R.color.colorOrange)
-                "Obesidad grado 2" -> range.setBackgroundColor(R.color.colorYellow)
-                "Obesidad grado 1" -> range.setBackgroundColor(R.color.colorRed)
+                when(categoria) {
+                    "Bajo peso" -> range.setBackgroundResource(R.color.colorBrown)
+                    "Normal" -> range.setBackgroundResource(R.color.colorGreen)
+                    "Sobrepeso" -> range.setBackgroundResource(R.color.colorGreenish)
+                    "Obesidad grado 1" -> range.setBackgroundResource(R.color.colorOrange)
+                    "Obesidad grado 2" -> range.setBackgroundResource(R.color.colorYellow)
+                    "Obesidad grado 1" -> range.setBackgroundResource(R.color.colorRed)
+                }
+            }else{
+                weight.setBackgroundResource(R.color.colorRed)
+                height.setBackgroundResource(R.color.colorRed)
             }
+
+
         }
     }
     //funcion
